@@ -94,9 +94,9 @@ class StoryTeller(BaseTool):
         """
         prompt = PromptTemplate(template=template, input_variables=["scenario"])
 
-        # llm=OpenAI(openai_api_key="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" ,model_name="gpt-3.5-turbo", temperature = 0)
+        # llm=OpenAI(openai_api_key="key" ,model_name="gpt-3.5-turbo", temperature = 0)
         llm = ChatOpenAI(
-        openai_api_key="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",
+        openai_api_key="key",
         temperature=0,
         model_name="gpt-3.5-turbo"
         )
@@ -105,7 +105,7 @@ class StoryTeller(BaseTool):
 
         story = story_llm.predict(scenario=scenario)
 
-        # print(story)
+        print("story in tool: ", story)
         return story
 
     def _arun(self, query: str):

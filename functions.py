@@ -57,9 +57,9 @@ def generate_story(scenario):
     """
     prompt = PromptTemplate(template=template, input_variables=["scenario"])
 
-    # llm=OpenAI(openai_api_key="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" ,model_name="gpt-3.5-turbo", temperature = 0)
+    # llm=OpenAI(openai_api_key="key" ,model_name="gpt-3.5-turbo", temperature = 0)
     llm = ChatOpenAI(
-    openai_api_key="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",
+    openai_api_key="key",
     temperature=0,
     model_name="gpt-3.5-turbo"
     )

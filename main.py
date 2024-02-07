@@ -20,7 +20,7 @@ conversational_memory = ConversationBufferWindowMemory(
 )
 
 llm = ChatOpenAI(
-    openai_api_key='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',
+    openai_api_key='key',
     temperature=0,
     model_name="gpt-3.5-turbo"
 )
@@ -55,7 +55,7 @@ if file:
     ### compute agent response ###
     ##############################
     # with NamedTemporaryFile(dir='.') as f:
-    with open("dog.jpg", "w+b") as f:
+    with open("temp.jpg", "w+b") as f:
         f.write(file.getbuffer())
         image_path = f.name
 
@@ -63,4 +63,10 @@ if file:
         if user_question and user_question != "":
             with st.spinner(text="In progress..."):
                 response = agent.run('{}, this is the image path: {}'.format(user_question, image_path))
-                st.write(response)
+                # st.write(response)
+                st.write("Agent Response:", response)
+
+
+
+# please tell me bounding boxes of all detected objects in this image
+# please tell me a story related to image in 200 words
