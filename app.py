@@ -34,7 +34,7 @@ def generate_story(scenario):
     """
     prompt = PromptTemplate(template=template, input_variables=["scenario"])
 
-    llm=OpenAI(openai_api_key="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" ,model_name="gpt-3.5-turbo", temperature = 1)
+    llm=OpenAI(openai_api_key="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" ,model_name="gpt-3.5-turbo", temperature = 1)
 
     story_llm = LLMChain(llm=llm, prompt = prompt, verbose=True)
 

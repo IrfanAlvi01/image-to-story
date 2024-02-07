@@ -1,7 +1,11 @@
-from transformers import BlipProcessor, BlipForConditionalGeneration, DetrImageProcessor, DetrForObjectDetection
+from transformers import BlipProcessor, BlipForConditionalGeneration, DetrImageProcessor, DetrForObjectDetection, pipeline
 from PIL import Image
 import torch
-import requests
+
+from langchain.chains import LLMChain
+from langchain.prompts import PromptTemplate
+from langchain_openai import OpenAI
+from langchain.chat_models import ChatOpenAI
 
 def get_image_caption(image_path):
 
@@ -43,9 +47,45 @@ def detect_objects(image_path):
     return detections
 
 
+def generate_story(scenario):
+    template = """
+    you are a story teller;
+    you can generate short story based on a simple narrative, the story should be no more than 200 words
+
+    CONTEXT: {scenario}
+    STORY:
+    """
+    prompt = PromptTemplate(template=template, input_variables=["scenario"])
+
+    # llm=OpenAI(openai_api_key="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" ,model_name="gpt-3.5-turbo", temperature = 0)
+    llm = ChatOpenAI(
+    openai_api_key="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",
+    temperature=0,
+    model_name="gpt-3.5-turbo"
+    )
+
+    story_llm = LLMChain(llm=llm, prompt = prompt, verbose=True)
+
+    story = story_llm.predict(scenario=scenario)
+
+    # print(story)
+    return story
+
+def get_story(image_path):
+    caption = get_image_caption(image_path)
+    story = generate_story(caption)
+
+    return story
+
+
 if __name__ == '__main__':
     image_path = "dog.jpg"
     # caption = get_image_caption(image_path)
     # print(caption)
-    detections = detect_objects(image_path)
-    print(detections)
+    # detections = detect_objects(image_path)
+    # print(detections)
+    # story = generate_story("three women sitting on a bench in a field of tulips")
+    # print(story)
+
+    story = get_story(image_path)
+    print(story)
