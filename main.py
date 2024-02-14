@@ -20,7 +20,7 @@ conversational_memory = ConversationBufferWindowMemory(
 )
 
 llm = ChatOpenAI(
-    openai_api_key='key',
+    # openai_api_key='key',
     temperature=0,
     model_name="gpt-3.5-turbo"
 )
@@ -62,6 +62,7 @@ if file:
         # write agent response
         if user_question and user_question != "":
             with st.spinner(text="In progress..."):
+                print('{}, this is the image path: {}'.format(user_question, image_path))
                 response = agent.run('{}, this is the image path: {}'.format(user_question, image_path))
                 # st.write(response)
                 st.write("Agent Response:", response)

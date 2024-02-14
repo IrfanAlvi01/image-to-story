@@ -68,7 +68,7 @@ class ObjectDetectionTool(BaseTool):
 class StoryTeller(BaseTool):
     name = "Story teller"
     description = "Use this tool when ask to tell or descirbe a story related to some scenario. " \
-                  "It will return a small story in numbers of words asked by user."
+                  "It will return a story in numbers of words asked by user."
 
     def _run(self, img_path):
         image = Image.open(img_path).convert("RGB")
@@ -96,7 +96,7 @@ class StoryTeller(BaseTool):
 
         # llm=OpenAI(openai_api_key="key" ,model_name="gpt-3.5-turbo", temperature = 0)
         llm = ChatOpenAI(
-        openai_api_key="key",
+        # openai_api_key="key",
         temperature=0,
         model_name="gpt-3.5-turbo"
         )

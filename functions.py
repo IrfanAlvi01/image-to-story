@@ -59,7 +59,7 @@ def generate_story(scenario):
 
     # llm=OpenAI(openai_api_key="key" ,model_name="gpt-3.5-turbo", temperature = 0)
     llm = ChatOpenAI(
-    openai_api_key="key",
+    # openai_api_key="key",
     temperature=0,
     model_name="gpt-3.5-turbo"
     )
@@ -79,7 +79,7 @@ def get_story(image_path):
 
 
 if __name__ == '__main__':
-    image_path = "dog.jpg"
+    image_path = "temp.jpg"
     # caption = get_image_caption(image_path)
     # print(caption)
     # detections = detect_objects(image_path)
